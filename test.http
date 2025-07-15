@@ -1,0 +1,64 @@
+@baseUrl = http://localhost:3000
+@contentType = application/json
+@accessToken =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbWQzZnV1MGowMDAwaTl5b3ZpNWNpanRoIiwiZW1haWwiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzUyNTc5Mjk1LCJleHAiOjE3NTI1ODI4OTV9.GNdh1GaGaVpU3hhnDRx9RNYNGn_M72GRAfFYlZrXrGk
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbWQzZnV1MGowMDAwaTl5b3ZpNWNpanRoIiwiZW1haWwiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzUyNTc5Mjk1LCJleHAiOjE3NTMxODQwOTV9.JkOyZmmJ4zmUMMNMwyzS9SvAvCINCL3o6Ljx1zcUw1c
+@headers = {
+"Authorization": "Bearer {{accessToken}}",
+Content-Type: "{{contentType}}"
+}
+
+### 📝 Sign Up
+POST {{baseUrl}}/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "username": "testuser",
+  "email": "test@exaomple.com",
+  "password": "password123",
+  "name": "Test User"
+}
+
+### 🔐 Sign In
+# @name signin
+POST {{baseUrl}}/auth/signin
+Content-Type: {{contentType}}
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+
+
+### 👤 Get Current User (Requires JWT)
+# @name getMe
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{accessToken}}
+Content-Type: {{contentType}}
+
+
+### 🔁 Refresh Tokens
+# @name refresh
+POST {{baseUrl}}/auth/refresh
+Content-Type: {{contentType}}
+
+{
+ "refreshToken": "{{refreshToken}}"
+}
+
+### 🚪 Logout (Single Session)
+# @name logout
+POST {{baseUrl}}/auth/logout
+Authorization: Bearer {{accessToken}}
+Content-Type: {{contentType}}
+
+{
+ "refreshToken": "{{refreshToken}}"
+}
+
+
+### 🚪 Logout All Sessions
+# @name logoutAll
+POST {{baseUrl}}/auth/logout-all
+Authorization: Bearer {{accessToken}}
+Content-Type: {{contentType}}
